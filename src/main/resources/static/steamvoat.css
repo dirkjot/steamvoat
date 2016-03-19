@@ -6,7 +6,8 @@ html, body, .flex-container {
 .flex-container {
     display: flex;
     flex-flow: column nowrap;
-    background-color: rgb(177, 255, 207);
+    background-color: #E8E8E8;
+    /* TODO gradient #A0C295 to C2A195 */
 }
 
 .header-group {
@@ -25,7 +26,6 @@ html, body, .flex-container {
 
 .vote-group {
     flex: 1 0 auto;
-    background-color: rgb(24, 252, 138);
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
@@ -90,10 +90,10 @@ html, body, .flex-container {
 
 .comment-group {
     flex: 0 1 auto;
-    /*display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    height: 999px; */
+    /*display: flex;*/
+    /*flex-flow: row nowrap;*/
+    /*justify-content: flex-start;*/
+    /*height: 999px; */
 }
 
 .comment-item {
