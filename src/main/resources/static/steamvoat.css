@@ -31,11 +31,20 @@ html, body, .flex-container {
     justify-content: space-around;
 }
 
-.btn {
+.btn, .btn :active, .btn :hover, .btn :focus {
     width: 40px;
     height: 40px;
     border-radius: 10px;
     border: 1px solid;
+    outline: none;
+}
+
+.submitbutton {
+    border-radius: 10px;
+    border: 1px solid;
+    outline: none;
+    margin-top: 11px;
+    margin-bottom: 22px;
 }
 
 /* http://charliepark.org/bootstrap_buttons/ */

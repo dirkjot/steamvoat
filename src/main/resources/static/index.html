@@ -8,40 +8,44 @@
 
 <body ng-app="voat" ng-controller="one">
 
-    <div class="flex-container" >
-        <div class="header-group">
-            <div class="header-item"><h1>SteamVoat</h1></div>
+<div class="flex-container">
+    <div class="header-group">
+        <div class="header-item"><h1>SteamVoat</h1></div>
+    </div>
+    <div class="vote-group" ng-class="votecolorclass">
+        <div class="vote-item"> <!-- not sure why TODO -->
+            &nbsp;</div>
+        <div class="vote-item">
+            <button class="btn  green-custom"
+                    ng-click="clickbutton('green')">&nbsp;</button>
         </div>
-        <div  class="vote-group" ng-class="votecolorclass">
-            <div class="vote-item"> <!-- not sure why TODO -->
-                &nbsp;</div>
-            <div class="vote-item">
-                <button class="btn  green-custom"
-                        ng-click="clickbutton('green')">&nbsp;</button></div>
-            <div class="vote-item">
-                <button class="btn yellow-custom"
-                        ng-click="clickbutton('yellow')">&nbsp;</button></div>
-            <div class="vote-item">
-                <button class="btn red-custom"
-                        ng-click="clickbutton('red')" >&nbsp;</button></div>
-            <div class="vote-item">
-                &nbsp;</div>
+        <div class="vote-item">
+            <button class="btn yellow-custom"
+                    ng-click="clickbutton('yellow')">&nbsp;</button>
+        </div>
+        <div class="vote-item">
+            <button class="btn red-custom"
+                    ng-click="alert('foo'); clickbutton('red')">&nbsp;</button>
+        </div>
+        <div class="vote-item">
+            &nbsp;</div>
+    </div>
+</div>
+
+<div class="comment-group">
+    <div class="comment-item">
+        <p>If you have any comments, please use this box!</p>
+        <textarea class="comment-box" cols=40 rows=5 placeholder="Comments"></textarea>
+        <div>
+            <button class="submitbutton" ng-click="submitComments()">Submit Comments</button>
         </div>
     </div>
-    <div class="comment-group">
-        <div class="comment-item">
-            <p>If you have any comments, please use this box!</p>
-            <textarea class="comment-box" cols=40 rows=5 placeholder="Comments"></textarea>
-            <br>
-            <button class="btn" ng-click="submitComments()">Submit Comments</button>
-            <br>
-        </div>
-    </div>
+</div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-    <script src="index.js"></script>
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.js"></script>
+<script src="js/angular-uuid.js"></script>
+<script src="index.js"></script>
 
 </body>
 </html>
