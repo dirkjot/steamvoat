@@ -25,5 +25,8 @@
         <module name="steamvoat" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="steamvoat" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

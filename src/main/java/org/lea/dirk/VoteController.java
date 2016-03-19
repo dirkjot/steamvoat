@@ -1,20 +1,27 @@
 package org.lea.dirk;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-/**
- * Created by pivotal on 3/18/16.
- */
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class VoteController {
 
-    @RequestMapping("/api/vote/{color}/vote")
-    public String vote(@RequestParam String color) {
-        return "";
+    @RequestMapping(value="/api/vote", method=RequestMethod.POST)
+    public String vote(@RequestBody String color) {
+        System.out.println(color);
+        return "[\"ok\"]";
 
     }
 
+
+    @RequestMapping(value="/api/comment", method= RequestMethod.POST)
+    public String comment(@RequestBody String comment) {
+        System.out.println(comment);
+        return "[\"ok\"]";
+
+
+    }
+
+
 }
+
+
