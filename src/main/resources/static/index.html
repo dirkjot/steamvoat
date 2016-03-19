@@ -35,16 +35,16 @@
 <div class="comment-group">
     <div class="comment-item">
         <p>If you have any comments, please use this box!</p>
-        <textarea class="comment-box" cols=40 rows=5 placeholder="Comments"></textarea>
+        <textarea class="comment-box" cols=40 rows=5 placeholder="Comments" ng-model="voteData.comment"></textarea>
         <div>
-            <button class="submitbutton" ng-bind="voteData.comment"
+            <button class="submitbutton"
                     ng-click="send()">Submit Comments</button>
         </div>
 
     </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script><!-- TODO minify -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.js"></script>
 <script src="js/angular-uuid.js"></script>
 <script src="index.js"></script>

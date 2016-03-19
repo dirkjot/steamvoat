@@ -11,7 +11,7 @@ app.controller("one", ['$scope', '$http', '$cookies', 'uuid', function($scope, $
 
     var expiry = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
     $cookies.put("useruuid", userUuid, { expires: expiry });
-    $scope.voteDate.uuid = userUuid;
+    $scope.voteData.uuid = userUuid;
     };
 
   $scope.clickbutton = function(color) {
@@ -22,7 +22,7 @@ app.controller("one", ['$scope', '$http', '$cookies', 'uuid', function($scope, $
 
   $scope.send = function () {
        console.log("sending", $scope.voteData);
-       $http.post("/api/vote/", $scope.voteData).then(
+       $http.post("/vote", $scope.voteData).then(
             function success(response) {
                 console.log("success call to vote", response.data); },
             function failure(response) {

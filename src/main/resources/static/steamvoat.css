@@ -42,7 +42,6 @@ html, body, .flex-container {
 .submitbutton {
     border-radius: 10px;
     border: 1px solid;
-    outline: none;
     margin-top: 11px;
     margin-bottom: 22px;
 }
