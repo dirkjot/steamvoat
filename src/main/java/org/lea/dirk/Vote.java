@@ -1,8 +1,7 @@
 package org.lea.dirk;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Vote {
@@ -11,6 +10,7 @@ public class Vote {
     private String uuid;
     private String color;
     private String comment;
+    private Date timestamp;
 
     public Long getId() {
         return id;
@@ -44,6 +44,10 @@ public class Vote {
         this.comment = comment;
     }
 
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
     public Vote() {
     }
 
@@ -56,9 +60,16 @@ public class Vote {
     @Override
     public String toString() {
         return "Vote{" +
-                "uuid=" + uuid +
+                "uuid='" + uuid + '\'' +
                 ", color='" + color + '\'' +
                 ", comment='" + comment + '\'' +
+                ", timestamp=" + timestamp +
                 '}';
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void updateTimestamp() {
+        timestamp = new Date();
     }
 }
