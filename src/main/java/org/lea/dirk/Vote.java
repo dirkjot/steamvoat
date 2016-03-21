@@ -3,10 +3,24 @@ package org.lea.dirk;
 import javax.persistence.*;
 import java.util.Date;
 
+// for H2:
+    // table is created on request.
+// for postgres:
+   // drop table vote
+   // create table vote (id SERIAL UNIQUE PRIMARY KEY , uuid varchar(50), color varchar(25), comment text, timestamp timestamp  );
+
 @Entity
 public class Vote {
-    @Id @GeneratedValue
+
+// For H2:
+    // @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // private Long id;
+// For Postgres:
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vote_seq_gen")
+    @SequenceGenerator(name = "vote_seq_gen", sequenceName = "vote_id_seq")
     private Long id;
+
     private String uuid;
     private String color;
     private String comment;
