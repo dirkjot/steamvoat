@@ -1,9 +1,10 @@
-app = angular.module("voat", ["angular-uuid", "ngCookies"]);
+app = angular.module("voat", ["angular-uuid", "ngCookies", "ngAnimate"]);
 
 app.controller("one", ['$scope', '$http', '$cookies', '$timeout', 'uuid',
   function($scope, $http, $cookies, $timeout, uuid) {
   $scope.voteData = {comment: "", color: "", uuid: ""};
   $scope.votecolorclass = "";
+  $scope.myValue = false;
 
   $scope.determine_user = function() {
     var userUuid = $cookies.get('useruuid');
@@ -32,17 +33,17 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', 'uuid',
 
   $scope.determine_user();
 
-  // Initialize jRumble on Selector
-  $('.btn').jrumble({
-                    	x: 0,	y: 0,
-                    	rotation: 9, speed: 60,
-                    });
-
-  // Start rumble on element
-  $('.btn').trigger('startRumble');
-
-  $timeout(function() { $('.btn').trigger('stopRumble'); },
-    1500);
+  //// Initialize jRumble on Selector
+  //$('.btn').jrumble({
+  //                  	x: 0,	y: 0,
+  //                  	rotation: 9, speed: 60,
+  //                  });
+  //
+  //// Start rumble on element
+  //$('.btn').trigger('startRumble');
+  //
+  //$timeout(function() { $('.btn').trigger('stopRumble'); },
+  //  1500);
 
 
 }]);
