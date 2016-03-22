@@ -263,6 +263,7 @@ p {
         -webkit-transform: translate(-2px, 2px) rotate(-20deg);
     }
 }
+
 .shake {
     -webkit-animation-name: shake;
     -webkit-animation-duration: 0.6s;
