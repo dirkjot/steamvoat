@@ -1,3 +1,4 @@
+/* general settings */
 html, body, .flex-container {
     height: 100%;
     margin: 0;
@@ -10,6 +11,7 @@ html, body, .flex-container {
     /* TODO gradient #A0C295 to C2A195 */
 }
 
+/* Header is the title and an icon (optional) */
 .header-group {
     flex: 0 0 auto;
     display: flex;
@@ -24,6 +26,7 @@ html, body, .flex-container {
     flex: 1 1 auto;
 }
 
+/* vote group is the main pane */
 .vote-group {
     flex: 1 0 auto;
     display: flex;
@@ -31,6 +34,7 @@ html, body, .flex-container {
     justify-content: space-around;
 }
 
+/* general button styling */
 .btn, .btn :active, .btn :hover, .btn :focus {
     width: 40px;
     height: 40px;
@@ -39,13 +43,15 @@ html, body, .flex-container {
     outline: none;
 }
 
-.submitbutton {
+/* button for comments */
+.submitbutton, .submitbutton :active, .submitbutton :hover, .submitbutton :focus {
     border-radius: 10px;
     border: 1px solid;
     margin-top: 11px;
     margin-bottom: 22px;
 }
 
+/* style for the three buttons AND the background of the vote pane */
 /* http://charliepark.org/bootstrap_buttons/ */
 .green-custom {
     background-color: hsl(93, 79%, 30%) !important;
@@ -96,6 +102,7 @@ html, body, .flex-container {
     -webkit-font-smoothing: antialiased;
 }
 
+/* the comment group is always under the fold */
 .comment-group {
     flex: 0 1 auto;
     /*display: flex;*/
@@ -108,6 +115,7 @@ html, body, .flex-container {
     padding-left: 50px;
 }
 
+/* hamburger menu, currently not used */
 .box-shadow-menu {
     position: relative;
     padding-left: 1.2em;
@@ -130,6 +138,7 @@ html, body, .flex-container {
 }
 
 
+/* text formatting */
 h1 {
     font-weight: 600;
     font-size: 38px;
@@ -144,32 +153,127 @@ p {
     font-size: 14px;
 }
 
+/* bubble is the message that is shown over the UI */
 .bubble {
     font-weight: 300;
     font-size: 30px;
     margin: 0px 0px 0px 0px;
     line-height: 120%;
     font-family: 'Open sans', sans-serif;
+    font-style: italic;
+    color: black;
+    position: absolute;
+    z-index: 100;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* feedback for comment button */
+.feedback {
+    margin-left: 20px;
+    background-color: gold;
+    font-size: 15px;
+    font-family: 'Open sans', sans-serif;
 }
 
 
-.animate-hide {
-    -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s;
-    -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s;
-    -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s;
-    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s;
-    line-height:20px;
-    background:white;
-    position: relative;
-    left: 50px;
-    opacity:1;
-    padding:10px;
+/* next 9 rules are for the animation (sigh) */
+
+/* End state for bubble is shown (ie it is up)
+   Note that the HIDE state means the bubble is
+   at the bottom of the window, not actually hidden. */
+.animate-slide {
+    top: 20%;
+    left: 20%;
+    -webkit-transform: translate3d(0, 0, 0);
+    /* Chrome, Safari, Opera */
+    transform: translate3d(0, 0, 0, );
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
-.animate-hide.ng-hide {
-    left: 100%;
-    opacity:0;
-    padding:0 10px;
+/* end state for hidden (ie at bottom of screen) */
+.animate-slide.ng-hide {
+    top: 95%;
+    left: 25%;
+    display: block!important;
 }
 
+/* whenever hide is applied,
+  Removing this works in latest Chrome, but left this in either way */
+.animate-slide.ng-hide-add,
+.animate-slide.ng-hide-remove {
+    display: block!important;
+}
+
+/* transition from hidden to shown */
+.animate-slide.ng-hide-remove.ng-hide-remove-active {
+    -webkit-animation: 1.5s slide-up;
+    animation: 1.5s slide-up;
+}
+
+/* tranisition from shown to hidden */
+.animate-slide.ng-hide-add.ng-hide-add-active {
+    -webkit-animation: 1.5s slide-down;
+    animation: 1.5s slide-down;
+}
+
+/* Transition trajectories:  Chrome, Safari, Opera */
+/* Latest Chrome does not need this anymore, but left this in */
+@-webkit-keyframes slide-up{
+    0% { top: 95%; left: 25%;  }
+    100% { top: 20%; left: 20%;  }
+}
+
+@-webkit-keyframes slide-down {
+    0% { top: 20%; left: 20%;  }
+    100% { top: 95%; left: 25%;  }
+}
+
+/* Transition trajectories:  Standard syntax */
+@keyframes slide-up {
+    0% { top: 95%; left: 25%;  }
+    100% { top: 20%; left: 20%; }
+}
+
+@keyframes slide-down {
+    0% {  top: 20%; left: 20%;  }
+    100% { top: 95%; left: 25%;  }
+}
+
+
+@-webkit-keyframes shake {
+    0% {
+        -webkit-transform: translate(2px, 2px) rotate(20deg);
+    }
+    20% {
+        -webkit-transform: translate(-4px, -4px) rotate(-20deg);
+    }
+    40% {
+        -webkit-transform: translate(2px, 2px) rotate(20deg);
+    }
+    60% {
+        -webkit-transform: translate(-2px, 2px) rotate(-20deg);
+    }
+    80% {
+        -webkit-transform: translate(4px, -4px) rotate(20deg);
+    }
+    100% {
+        -webkit-transform: translate(-2px, 2px) rotate(-20deg);
+    }
+}
+.shake {
+    -webkit-animation-name: shake;
+    -webkit-animation-duration: 0.6s;
+    -webkit-transform-origin: 50% 50%;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    animation-duration: 0.6;
+}
+
+/* ng-cloak */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
 

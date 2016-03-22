@@ -18,8 +18,6 @@
         <div class="vote-item">
             <button class="btn  green-custom"
                     ng-click="clickbutton('green')">&nbsp;</button>
-            <span ng-hide="voteData.color != '' " class="animate-hide">
-                Please vote using these buttons</span>
         </div>
         <div class="vote-item">
             <button class="btn yellow-custom"
@@ -32,15 +30,10 @@
         <div class="vote-item">
             &nbsp;</div>
     </div>
-
-    <div id='outerdiv'  >
-        <div ng-click="myValue=true" >LEFT</div>
-        <div  ng-click="myValue=false">RIGHT</div>
-        <div id="one" class='animate-hide bubble'  ng-hide="myValue">
-            this is just a sample div
-        </div>
-        {{myValue}}
+    <div class="animate-slide bubble  ng-cloak" ng-show="bubbleUp">
+        {{animText}}
     </div>
+
 </div>
 
 <div class="comment-group">
@@ -50,7 +43,9 @@
         <div>
             <button class="submitbutton"
                     ng-click="send()">Submit Comments</button>
+            <span ng-show="feedbackMessage" class="feedback">  Submitted, thank you!</span>
         </div>
+
 
     </div>
 </div>
