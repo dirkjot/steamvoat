@@ -1,0 +1,20 @@
+{
+  "license" : "UNLICENSED",
+
+  "repository" : "required field but not applicable",
+
+  "dependencies": {
+    "bower": "^1.7.7",
+    "gulp": "^3.9.1",
+    "gulp-bower-files": "^0.2.7",
+    "gulp-concat": "^2.6.0",
+    "gulp-print": "^2.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3",
+    "jshint": "^2.9.1",
+    "del": "^2.2.0",
+    "gulp-add-src": "^0.2.0",
+    "gulp-processhtml": "^1.1.0",
+    "main-bower-files": "^2.11.1"
+  }
+}

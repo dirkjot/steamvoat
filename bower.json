@@ -1,0 +1,25 @@
+{
+  "name": "steamvoat",
+  "description": "Voting app",
+  "main": "",
+  "license": "MIT",
+  "homepage": "https://github.com/dirkjot/steamvoat",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.4.9",
+    "angular-animate": "1.4.9",
+    "angular-cookies": "1.4.9",
+    "angular-uuid4": "0.3.1"
+  },
+  "resolutions": {
+    "angular": "1.4.9"
+  }
+}

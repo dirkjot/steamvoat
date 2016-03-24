@@ -1,7 +1,7 @@
-app = angular.module("voat", ["angular-uuid", "ngCookies", "ngAnimate"]);
+app = angular.module("voat", ["uuid4", "ngCookies", "ngAnimate"]);
 
-app.controller("one", ['$scope', '$http', '$cookies', '$timeout', 'uuid',
-  function($scope, $http, $cookies, $timeout, uuid) {
+app.controller("one", ['$scope', '$http', '$cookies', '$timeout', 'uuid4',
+  function($scope, $http, $cookies, $timeout, uuid4) {
     $scope.voteData = {comment: "", color: "", uuid: ""};
     $scope.votecolorclass = "";
     $scope.bubbleUp = false;
@@ -11,7 +11,7 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', 'uuid',
     $scope.determine_user = function() {
       var userUuid = $cookies.get('useruuid');
       if (userUuid == null) {
-        userUuid = uuid.v4(); }
+        userUuid = uuid4.generate(); }
 
       var expiry = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
       $cookies.put("useruuid", userUuid, { expires: expiry });

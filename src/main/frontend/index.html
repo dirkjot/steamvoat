@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Prof Hald - SteamVoat</title>
     <link href="steamvoat.css" rel="stylesheet">
 </head>
 
@@ -10,7 +11,7 @@
 
 <div class="flex-container">
     <div class="header-group">
-        <div class="header-item"><h1>SteamVoat: Prof Hald</h1></div>
+        <div class="header-item"><h1>Prof Hald on SteamVoat</h1></div>
     </div>
     <div class="vote-group" ng-class="votecolorclass">
         <div class="vote-item"> <!-- not sure why TODO -->
@@ -45,19 +46,15 @@
                     ng-click="send()">Submit Comments</button>
             <span ng-show="feedbackMessage" class="feedback">  Submitted, thank you!</span>
         </div>
-
-
     </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script><!-- TODO minify -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.js"></script>
-<script src="js/angular-uuid.js"></script>
-<script src="js/angular-animate.min.js"></script>
-
-
-
-<script src="index.js"></script>
-
+<!-- build:js  steamvoat.min.js -->
+<script src="/devresources/js/angular.js"></script>
+<script src="/devresources/js/angular-cookies.js"></script>
+<script src="/devresources/js/angular-uuid4.js"></script>
+<script src="/devresources/js/angular-animate.js"></script>
+<script src="/devresources/js/index.js"></script>
+<!-- /build -->
 </body>
 </html>
