@@ -20,7 +20,7 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', 'uuid4',
 
     $scope.clickbutton = function(color) {
       $scope.voteData.color = color;
-      $scope.votecolorclass = color + "-custom";
+      $scope.votecolorclass = color + "-background";
       $scope.bubbleUp = false;
       $scope.animText = "Comments? Scroll down..."
       $scope.send();
