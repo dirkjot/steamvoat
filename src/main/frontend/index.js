@@ -32,8 +32,8 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', 'uuid4',
           function success(response) {
             if ($scope.voteData.comment != '') {
               $scope.feedbackMessage = true;
-              $timeout(function() { $scope.feedbackMessage = false; },
-                3000);
+              //$timeout(function() { $scope.feedbackMessage = false; },
+              //  3000);
             }},
           function failure(response) {
             alert("Could not contact the server, sorry");

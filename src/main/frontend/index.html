@@ -4,6 +4,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     <meta charset="UTF-8">
     <title>Prof Hald - SteamVoat</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     <link href="steamvoat.css" rel="stylesheet">
 </head>
 
@@ -27,7 +28,7 @@
                     ng-click="clickbutton('red')">&nbsp;</button>
         </div>
     </div>
-    <div class="bubble">
+    <div class="bubble" ng-show="votecolorclass">
         <button class="btn btn-white">Comments?</button>
     </div>
 
@@ -35,12 +36,11 @@
 
 <div class="comment-group">
     <div class="comment-item">
-        <p>If you have any comments, please use this box!</p>
-        <textarea class="comment-box" cols=40 rows=5 placeholder="Comments" ng-model="voteData.comment"></textarea>
+        <textarea class="comment-box" cols=40 rows=5 placeholder="Room for comments" ng-model="voteData.comment"></textarea>
         <div>
-            <button class="submitbutton"
+            <button class="btn-submit"
                     ng-click="send()">Submit Comments</button>
-            <span ng-show="feedbackMessage" class="feedback">  Submitted, thank you!</span>
+            <button ng-show="feedbackMessage" class="feedback">  Submitted, thank you!</button>
         </div>
     </div>
 </div>
