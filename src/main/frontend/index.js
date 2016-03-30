@@ -43,9 +43,7 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', 'uuid4',
 
     $scope.determine_user();
 
-    $timeout(function() {
-          $scope.bubbleUp = true;},
-        500);
+
 
   }]);
 

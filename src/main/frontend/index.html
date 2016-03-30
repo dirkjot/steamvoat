@@ -9,30 +9,26 @@
 
 <body ng-app="voat" ng-controller="one">
 
-<div class="flex-container">
+<div class="flex-container" ng-class="votecolorclass">
     <div class="header-group">
         <div class="header-item"><h1>Prof Hald on SteamVoat</h1></div>
     </div>
-    <div class="vote-group" ng-class="votecolorclass">
-        <div class="vote-item"> <!-- not sure why TODO -->
-            &nbsp;</div>
+    <div class="vote-group" ng-hide="votecolorclass">
         <div class="vote-item">
-            <button class="btn  green-custom shake"
+            <button class="btn  green-background"
                     ng-click="clickbutton('green')">&nbsp;</button>
         </div>
         <div class="vote-item">
-            <button class="btn yellow-custom shake"
+            <button class="btn yellow-background"
                     ng-click="clickbutton('yellow')">&nbsp;</button>
         </div>
         <div class="vote-item">
-            <button class="btn red-custom shake"
+            <button class="btn red-background"
                     ng-click="clickbutton('red')">&nbsp;</button>
         </div>
-        <div class="vote-item">
-            &nbsp;</div>
     </div>
-    <div class="animate-slide bubble  ng-cloak" ng-show="bubbleUp">
-        {{animText}}
+    <div class="bubble">
+        <button class="btn btn-white">Comments?</button>
     </div>
 
 </div>

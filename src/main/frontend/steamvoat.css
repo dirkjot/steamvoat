@@ -2,12 +2,13 @@
 html, body, .flex-container {
     height: 100%;
     margin: 0;
+    font-family: 'Open sans', sans-serif;
 }
 
 .flex-container {
     display: flex;
     flex-flow: column nowrap;
-    background-color: #E8E8E8;
+    background-color: #fff;
     /* TODO gradient #A0C295 to C2A195 */
 }
 
@@ -17,14 +18,16 @@ html, body, .flex-container {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
+    padding: 20px 20px 0 20px;
+    text-align: center;
 }
 
 .header-item, .vote-item {
-    padding-left: 30px;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    flex: 1 1 auto;
+    margin: 20px 0;
+    flex: 1;
+    position: relative;
 }
+
 
 /* vote group is the main pane */
 .vote-group {
@@ -32,15 +35,25 @@ html, body, .flex-container {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
+    align-content: stretch;
+    padding: 15px 40px;
 }
 
 /* general button styling */
 .btn, .btn :active, .btn :hover, .btn :focus {
-    width: 40px;
-    height: 40px;
     border-radius: 10px;
-    border: 1px solid;
+    border: none;
     outline: none;
+    position: absolute;
+    width:100%;
+    height:100%;
+    box-shadow: 0 12px 15px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.btn-white {
+    background: #fff;
+    font-size: 16px;
+
 }
 
 /* button for comments */
@@ -53,50 +66,23 @@ html, body, .flex-container {
 
 /* style for the three buttons AND the background of the vote pane */
 /* http://charliepark.org/bootstrap_buttons/ */
-.green-custom {
-    background-color: hsl(93, 79%, 30%) !important;
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#75e41a", endColorstr="#468810");
-    background-image: -moz-linear-gradient(top, #75e41a, #468810);
-    background-image: -ms-linear-gradient(top, #75e41a, #468810);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #75e41a), color-stop(100%, #468810));
-    background-image: -webkit-linear-gradient(top, #75e41a, #468810);
-    background-image: -o-linear-gradient(top, #75e41a, #468810);
-    background-image: linear-gradient(#75e41a, #468810);
-    border-color: #468810 #468810 hsl(93, 79%, 25%);
+.green-background {
+    background: #4caf50;
     color: #fff !important;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
     -webkit-font-smoothing: antialiased;
 }
 
 
-.yellow-custom {
-    background-color: hsl(53, 79%, 49%) !important;
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#eedf71", endColorstr="#dfc81a");
-    background-image: -moz-linear-gradient(top, #eedf71, #dfc81a);
-    background-image: -ms-linear-gradient(top, #eedf71, #dfc81a);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eedf71), color-stop(100%, #dfc81a));
-    background-image: -webkit-linear-gradient(top, #eedf71, #dfc81a);
-    background-image: -o-linear-gradient(top, #eedf71, #dfc81a);
-    background-image: linear-gradient(#eedf71, #dfc81a);
-    border-color: #dfc81a #dfc81a hsl(53, 79%, 44%);
+.yellow-background {
+    background: #ffee58;
     color: #333 !important;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.33);
     -webkit-font-smoothing: antialiased;
 }
 
-.red-custom   {
-    background-color: hsl(17, 100%, 37%) !important;
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fe6123", endColorstr="#bc3500");
-    background-image: -moz-linear-gradient(top, #fe6123, #bc3500);
-    background-image: -ms-linear-gradient(top, #fe6123, #bc3500);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fe6123), color-stop(100%, #bc3500));
-    background-image: -webkit-linear-gradient(top, #fe6123, #bc3500);
-    background-image: -o-linear-gradient(top, #fe6123, #bc3500);
-    background-image: linear-gradient(#fe6123, #bc3500);
-    border-color: #bc3500 #bc3500 hsl(17, 100%, 32%);
+.red-background   {
+    background: #ef5350;
     color: #fff !important;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
     -webkit-font-smoothing: antialiased;
@@ -144,17 +130,17 @@ h1 {
     font-size: 38px;
     margin: 0px 0px 0px 0px;
     line-height: 120%;
-    font-family: 'Open sans', sans-serif;
 }
 
 p {
-    font-family: 'Open sans', sans-serif;
     color: #777777;
     font-size: 14px;
 }
 
 /* bubble is the message that is shown over the UI */
 .bubble {
+    width: 150px;
+    height: 50px;
     font-weight: 300;
     font-size: 30px;
     margin: 0px 0px 0px 0px;
@@ -163,10 +149,8 @@ p {
     font-style: italic;
     color: black;
     position: absolute;
-    z-index: 100;
-    pointer-events: none;
-    width: 100%;
-    height: 100%;
+    bottom: 5%;
+    left: 42.5%;
 }
 
 /* feedback for comment button */
@@ -221,7 +205,7 @@ p {
 
 /* Transition trajectories:  Chrome, Safari, Opera */
 /* Latest Chrome does not need this anymore, but left this in */
-@-webkit-keyframes slide-up{
+@-webkit-keyframes slide-up {
     0% { top: 95%; left: 25%;  }
     100% { top: 20%; left: 20%;  }
 }
