@@ -21,8 +21,6 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', 'uuid4',
     $scope.clickbutton = function(color) {
       $scope.voteData.color = color;
       $scope.votecolorclass = color + "-background";
-      $scope.bubbleUp = false;
-      $scope.animText = "Comments? Scroll down..."
       $scope.send();
     };
 
@@ -32,8 +30,8 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', 'uuid4',
           function success(response) {
             if ($scope.voteData.comment != '') {
               $scope.feedbackMessage = true;
-              //$timeout(function() { $scope.feedbackMessage = false; },
-              //  3000);
+              $timeout(function() { $scope.feedbackMessage = false; },
+                3000);
             }},
           function failure(response) {
             alert("Could not contact the server, sorry");

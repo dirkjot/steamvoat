@@ -12,7 +12,16 @@
 
 <div class="flex-container" ng-class="votecolorclass">
     <div class="header-group">
-        <div class="header-item"><h1>Prof Hald on SteamVoat</h1></div>
+        <div class="header-item">
+            <div class="course-info">
+                <h1>Prof Hald</h1>
+                <h1>PSY101</h1>
+            </div>
+            <div class="logo">
+                StVo
+            </div>
+
+        </div>
     </div>
     <div class="vote-group" ng-hide="votecolorclass">
         <div class="vote-item">
@@ -29,6 +38,7 @@
         </div>
     </div>
     <div class="bubble" ng-show="votecolorclass">
+        <button class="btn btn-white">Back</button>
         <button class="btn btn-white">Comments?</button>
     </div>
 
