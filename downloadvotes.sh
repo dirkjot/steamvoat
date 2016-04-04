@@ -8,6 +8,6 @@ tail -n +2 dates.csv | while read line ; do echo "backup for: $line"; psql -h pe
 
 
 # extract comments only
-python -m ../extractcomments.py data-*csv
+env PYTHONPATH=".." python -m extractcomments data-*csv
 
 cd ..
