@@ -17,6 +17,7 @@ var processhtml = require('gulp-processhtml')
 var del = require('del');
 var rev = require('gulp-rev');
 var revreplace = require('gulp-rev-replace');
+var sass = require('gulp-sass');
 
 // show managed bower files
 gulp.task('showbowerfiles', function() {
@@ -54,8 +55,9 @@ gulp.task('js-prod', function() {
 
 // copy css files for dev targets
 gulp.task('css-dev', function() {
-    gulp.src(src + '/**/*.css')
+    gulp.src(src + '/**/*.scss')
         .pipe(print())
+        .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest(destprod));
 });
 
@@ -107,7 +109,7 @@ gulp.task('watch', ['dev'], function() {
     // Watch html files
     gulp.watch(src + '/**/*.html', ['html-dev']);
     // Watch css files
-    gulp.watch(src + '/**/*.css', ['css-dev']);
+    gulp.watch(src + '/**/*.scss', ['css-dev']);
     // Watch image files
     gulp.watch(src + '/img/*', ['images']);
 });

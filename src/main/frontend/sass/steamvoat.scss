@@ -1,0 +1,182 @@
+@mixin button() {
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-family: 'Open Sans', sans-serif;
+}
+
+$green: #4caf50;
+$yellow: #ffee58;
+$red: #ef5350;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+
+  .flex-container {
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: #fff;
+    height: 100%;
+
+    &.green-background {
+      background: $green;
+    }
+
+    &.yellow-background {
+      background:$yellow;
+    }
+
+    &.red-background {
+      background: $red;
+    }
+
+    .header-group {
+      flex: 0 0 auto;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      padding: 20px 100px;
+      background: #bdbdbd;
+
+      .header-item {
+        margin: 20px 0;
+        flex: 1;
+        position: relative;
+
+        .course-info {
+          float: left;
+        }
+
+        .logo {
+          float: right;
+        }
+      }
+    }
+
+    .vote-group {
+      clear: both;
+      flex: 1 0 auto;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-around;
+      align-content: stretch;
+      padding: 100px;
+
+      .vote-item {
+        margin: 20px 0;
+        flex: 1;
+        position: relative;
+
+        button {
+          @include button();
+          position: absolute;
+          width:100%;
+          height:100%;
+          box-shadow: 0 12px 15px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+          box-shadow: 0 12px 15px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+
+          &.green-background {
+            background: $green;
+            color: #fff !important;
+            -webkit-font-smoothing: antialiased;
+            box-shadow: 5px 5px 0 0 rgba(27,94,32,1);
+          }
+
+          &.yellow-background {
+            background: $yellow;
+            color: #333 !important;
+            -webkit-font-smoothing: antialiased;
+            box-shadow: 5px 5px 0 0 rgba(253,216,53,1);
+          }
+
+          &.red-background {
+            background: $red;
+            color: #fff !important;
+            -webkit-font-smoothing: antialiased;
+            box-shadow: 5px 5px 0 0 rgba(183,28,28,1);
+          }
+        }
+      }
+
+    }
+
+    .action-group {
+      width: 100%;
+      height: 100px;
+      font-weight: 300;
+      font-size: 30px;
+      margin: 40px 0;
+      line-height: 120%;
+      font-family: 'Open sans', sans-serif;
+      font-style: italic;
+      color: black;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-around;
+      .action-button {
+        @include button();
+        background: #fff;
+        font-size: 36px;
+        flex: 0 0 auto;
+        width: 35%;
+        position: relative;
+      }
+    }
+  }
+
+  .comment-group {
+    flex: 0 1 auto;
+    padding: 40px 100px;
+    display: flex;
+    flex-flow: row nowrap;
+
+    .comment-item {
+      flex: 1 0 auto;
+      justify-content: center;
+      position: relative;
+
+      .submit-feedback {
+        @include button();
+        position: relative;
+        background: #4db6ac;
+        color: #fff;
+        width: 200px;
+        height: 50px;
+        font-size: 16px;
+        display: inline-block;
+      }
+
+      .feedback-message {
+        margin-left: 20px;
+        background-color: #ffecb3;
+        font-size: 16px;
+        font-family: 'Open sans', sans-serif;
+        width: 200px;
+        height: 50px;
+        border: 1px solid #ffc400;
+        outline: none;
+        position: relative;
+      }
+
+      textarea {
+        border: 1px solid #aaa;
+        outline: none;
+        resize: none;
+        width: 100%;
+        font-size: 16px;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+      }
+    }
+    }
+
+
+  /* ng-cloak */
+  [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+  }
+}

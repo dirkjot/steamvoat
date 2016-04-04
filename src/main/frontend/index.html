@@ -6,6 +6,7 @@
     <title>Prof Hald - SteamVoat</title>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     <link href="steamvoat.css" rel="stylesheet">
+    <link href="sass/steamvoat.css" rel="stylesheet">
 </head>
 
 <body ng-app="voat" ng-controller="one">
@@ -25,21 +26,21 @@
     </div>
     <div class="vote-group" ng-hide="votecolorclass">
         <div class="vote-item">
-            <button class="btn  green-background"
+            <button class="green-background"
                     ng-click="clickbutton('green')">&nbsp;</button>
         </div>
         <div class="vote-item">
-            <button class="btn yellow-background"
+            <button class="yellow-background"
                     ng-click="clickbutton('yellow')">&nbsp;</button>
         </div>
         <div class="vote-item">
-            <button class="btn red-background"
+            <button class="red-background"
                     ng-click="clickbutton('red')">&nbsp;</button>
         </div>
     </div>
-    <div class="bubble" ng-show="votecolorclass">
-        <button class="btn btn-white">Back</button>
-        <button class="btn btn-white">Comments?</button>
+    <div class="action-group" ng-show="votecolorclass">
+        <button class="action-button">Back</button>
+        <button class="action-button">Comments?</button>
     </div>
 
 </div>
@@ -48,9 +49,9 @@
     <div class="comment-item">
         <textarea class="comment-box" cols=40 rows=5 placeholder="Room for comments" ng-model="voteData.comment"></textarea>
         <div>
-            <button class="btn-submit"
+            <button class="submit-feedback"
                     ng-click="send()">Submit Comments</button>
-            <button ng-show="feedbackMessage" class="feedback">  Submitted, thank you!</button>
+            <button ng-show="feedbackMessage" class="feedback-message">  Submitted, thank you!</button>
         </div>
     </div>
 </div>
