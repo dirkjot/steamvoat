@@ -39,22 +39,25 @@
         </div>
     </div>
     <div class="action-group" ng-show="votecolorclass">
-        <button class="action-button">Back</button>
-        <button class="action-button">Comments?</button>
+        <button class="action-button" ng-click="votecolorclass='';">Back</button>
+        <button class="action-button" ng-click="scrollToComments()">Comments?</button>
     </div>
 
 </div>
 
-<div class="comment-group">
-    <div class="comment-item">
-        <textarea class="comment-box" cols=40 rows=5 placeholder="Room for comments" ng-model="voteData.comment"></textarea>
-        <div>
-            <button class="submit-feedback"
-                    ng-click="send()">Submit Comments</button>
-            <button ng-show="feedbackMessage" class="feedback-message">  Submitted, thank you!</button>
+<a name="commentgroup">
+    <div class="comment-group">
+        <div class="comment-item">
+            <textarea class="comment-box" cols=40 rows=5 placeholder="Room for comments" ng-model="voteData.comment"></textarea>
+            <div>
+                <button class="submit-feedback"
+                        ng-click="send()">Submit Comments</button>
+                <button ng-show="feedbackMessage" class="feedback-message">  Submitted, thank you!</button>
+            </div>
         </div>
     </div>
-</div>
+</a>
+
 
 <!-- build:js  steamvoat.min.js -->
 <script src="/devresources/js/angular.js"></script>

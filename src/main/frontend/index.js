@@ -1,7 +1,7 @@
 app = angular.module("voat", ["uuid4", "ngCookies", "ngAnimate"]);
 
-app.controller("one", ['$scope', '$http', '$cookies', '$timeout', 'uuid4',
-  function($scope, $http, $cookies, $timeout, uuid4) {
+app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '$anchorScroll', 'uuid4',
+  function($scope, $http, $cookies, $timeout, $location, $anchorScroll, uuid4) {
     $scope.voteData = {comment: "", color: "", uuid: ""};
     $scope.votecolorclass = "";
     $scope.bubbleUp = false;
@@ -22,6 +22,11 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', 'uuid4',
       $scope.voteData.color = color;
       $scope.votecolorclass = color + "-background";
       $scope.send();
+    };
+
+    $scope.scrollToComments = function() {
+      $location.hash('commentgroup');
+      $anchorScroll();
     };
 
     $scope.send = function () {
