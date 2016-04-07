@@ -116,8 +116,10 @@ gulp.task('watch', ['dev'], function() {
 
 
 // Production Task
+// TODO changed production to be identical to dev for now
 gulp.task('production',
-    ['clean', 'js-prod', 'css-prod', 'images', 'html-prod']);
+    // ['clean', 'js-prod', 'css-prod', 'images', 'html-prod']);
+    ['js-dev', 'css-dev', 'images', 'html-dev']);
 
 // Default Task
 gulp.task('dev',
