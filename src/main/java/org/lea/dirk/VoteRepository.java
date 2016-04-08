@@ -16,8 +16,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource(collectionResourceRel = "vote",
         path = "vote")
 public interface VoteRepository extends JpaRepository<Vote, Long>  {
-    @Query("select v from Vote v order by timestamp  ")
-    Iterable<Vote> findLast500();
 
 }
 

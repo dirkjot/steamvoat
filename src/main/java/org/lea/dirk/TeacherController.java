@@ -2,6 +2,10 @@ package org.lea.dirk;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,11 +28,8 @@ public class TeacherController {
      * @return Iterable of vote objects, json version via jackson
      */
     @RequestMapping("/teacher/rawlist")
-    public Iterable<Vote> rawVoteList() {
-        Iterable<Vote> result = voteRepository.findLast500();
+    public Page<Vote> rawVoteList() {
+        Page<Vote> result = voteRepository.findAll(new PageRequest(0, 500, new Sort(Sort.Direction.DESC, "timestamp")));
         return result;
-
-
-
     }
 }
