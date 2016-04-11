@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher View</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <link href="sass/teacher.css" rel="stylesheet">
+</head>
+<body ng-app="teacher" ng-controller="two">
+
+<h1>Teacher view - Raw Votes</h1>
+<div class="votelist">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Comment</th>
+            <th>Vote</th>
+            <th>Time stamp</th>
+        </tr>
+        <tr ng-repeat="vote in votelist track by vote.id">
+            <td>{{vote.id}}</td>
+            <td>{{vote.comment}}</td>
+            <td>{{vote.color}}</td>
+            <td>{{vote.timestamp}}</td>
+        </tr>
+    </table>
+</div>
+
+<!-- build:js  steamvoat.min.js -->
+<script src="/devresources/js/angular.js"></script>
+<script src="/devresources/js/teacher.js"></script>
+<!-- /build -->
+
+</body>
+</html>

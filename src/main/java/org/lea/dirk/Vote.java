@@ -12,7 +12,7 @@ import java.util.Date;
 @Entity
 public class Vote {
 
-// For H2:
+    // For H2:
     // @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     // private Long id;
 // For Postgres:
@@ -30,36 +30,51 @@ public class Vote {
         return id;
     }
 
-    public void setId(Long id) {
+    public Vote setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public Vote setUuid(String uuid) {
         this.uuid = uuid;
+        return this;
     }
 
     public String getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public Vote setColor(String color) {
         this.color = color;
+        return this;
     }
 
     public String getComment() {
         return comment;
     }
 
-    public void setComment(String comment) {
+    public Vote setComment(String comment) {
         this.comment = comment;
+        return this;
     }
 
     public Date getTimestamp() {
         return timestamp;
+    }
+
+    public Vote setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+        return this;
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void updateTimestamp() {
+        timestamp = new Date();
     }
 
     public Vote() {
@@ -81,9 +96,4 @@ public class Vote {
                 '}';
     }
 
-    @PrePersist
-    @PreUpdate
-    public void updateTimestamp() {
-        timestamp = new Date();
-    }
 }

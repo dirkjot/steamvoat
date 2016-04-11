@@ -1,0 +1,22 @@
+html, body {
+
+  .votelist {
+    table {
+      border: solid 1px black;
+      border-collapse: collapse;
+      width: 80%;
+    }
+
+    td {
+      border: solid 1px darkgrey;
+      height: 20px;
+      padding: 2px;
+    }
+
+    th {
+      border: solid 1px darkgrey;
+      text-align: left;
+      background-color: lightgrey;
+    }
+  }
+}

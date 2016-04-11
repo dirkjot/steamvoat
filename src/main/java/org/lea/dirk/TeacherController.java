@@ -29,6 +29,7 @@ public class TeacherController {
      */
     @RequestMapping("/teacher/rawlist")
     public Page<Vote> rawVoteList() {
+        // paging and sorting request for page 0 with 500 items on it, sorted by timestamp:
         Page<Vote> result = voteRepository.findAll(new PageRequest(0, 500, new Sort(Sort.Direction.DESC, "timestamp")));
         return result;
     }

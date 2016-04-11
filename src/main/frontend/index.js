@@ -44,9 +44,7 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '
           });
     };
 
+    // auto run:
     $scope.determine_user();
-
-
-
   }]);
 
