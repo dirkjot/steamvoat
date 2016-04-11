@@ -1,9 +1,15 @@
 app = angular.module("teacher", []);
 
-app.controller("two", ['$scope', '$http',
-    function ($scope, $http) {
+app.constant("moment", moment);
+
+app.controller("two", ['$scope', '$http', 'moment',
+    function ($scope, $http, moment) {
 
         $scope.votelist = [];
+
+        $scope.formatDate = function (timestamp) {
+            return moment(timestamp).format("h:mm a on YYYY-MM-DD");
+        };
 
         $scope.getVotes = function() {
             console.log("initing");
@@ -18,6 +24,7 @@ app.controller("two", ['$scope', '$http',
         };
 
         // auto run:
+        $scope.mmx = moment(100);
         console.log("auto run 2");
         $scope.getVotes();
     }]);

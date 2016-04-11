@@ -22,13 +22,14 @@
             <td>{{vote.id}}</td>
             <td>{{vote.comment}}</td>
             <td>{{vote.color}}</td>
-            <td>{{vote.timestamp}}</td>
+            <td>{{formatDate(vote.timestamp)}}</td>
         </tr>
     </table>
 </div>
 
 <!-- build:js  steamvoat.min.js -->
 <script src="/devresources/js/angular.js"></script>
+<script src="/devresources/js/moment.js"></script>
 <script src="/devresources/js/teacher.js"></script>
 <!-- /build -->
 

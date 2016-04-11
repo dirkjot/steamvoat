@@ -31,3 +31,13 @@ tail -n +2 dates.csv | while read line ; do echo "working on: $line"; done
 tail -n +2 dates.csv | while read line ; do echo "working on: $line"; psql -h pellefant.db.elephantsql.com -p5432 $ELPH_TABLE $ELPH_TABLE -c "\copy (select * from vote where timestamp::date = date '$line') to data-$line.csv csv header"; done
 ```
 
+
+# Front end hacking
+
+Fire up 'node.js', but make sure to include the bower components first:
+```
+env NODE_PATH=bower_components  node
+moment = require('moment/moment')
+moment(1).format()
+```
+
