@@ -65,15 +65,10 @@ gulp.task('css-dev', function() {
 // TODO DPJ does not work , see https://github.com/sindresorhus/gulp-rev/issues/83
 // copy and package all css files for production targets
 gulp.task('css-prod', function() {
-    gulp.src(src + '/**/*.css')
+    gulp.src(src + '/**/*.scss')
         .pipe(print())
-        .pipe(concat('steamvoat.css'))
-        //.pipe(rev())
+        .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest(destprod))
-        //.pipe(rev.manifest({base: "target/classes/static/",  path: "rev-manifest.json", merge:true }))
-        //                    //merge: false })) // only rev manifest from here, add to existing manifest
-        .pipe(print())
-        .pipe(gulp.dest("target/classes/static/"));
 });
 
 // copy html files, dev style
