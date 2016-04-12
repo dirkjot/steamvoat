@@ -41,3 +41,21 @@ moment = require('moment/moment')
 moment(1).format()
 ```
 
+
+# Local test database vs. copy of real database
+
+Normally, the app spins up with H2 locally and with elephantSql (postgres) on PWS.
+
+You can also test the app against a copy of the local database by following these steps:
+1. remove H2 from pom.xml (commenting works)
+1. Add postgresql to pom.xml
+1. Change application.properties to listen to local db (normally commented out, should really have a second property file)
+1. Create local postgress from a backup provided by elephantSQL:
+```
+   mkdir localdb
+   initdb localdb/ -E UTF8
+   pg_ctl -D localdb/ -l localdb/logfile start
+   createdb pivotal
+   psql # test whether it works
+   lzop -cd <BACKUPNAME> | psql
+```

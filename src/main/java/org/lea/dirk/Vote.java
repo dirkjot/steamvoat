@@ -19,18 +19,18 @@ public class Vote {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vote_seq_gen")
     @SequenceGenerator(name = "vote_seq_gen", sequenceName = "vote_id_seq")
-    private Long id;
+    private Integer id;
 
     private String uuid;
     private String color;
     private String comment;
     private Date timestamp;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public Vote setId(Long id) {
+    public Vote setId(Integer id) {
         this.id = id;
         return this;
     }
