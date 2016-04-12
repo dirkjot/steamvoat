@@ -25,7 +25,7 @@ public class TeacherControllerIntegrationTest {
     private MockMvc mockMvc;
 
     @Test
-    public void testMvcRawVoteList_FromInitialized() throws Exception {
+    public void testMvc_RawVoteList_FromInitialized() throws Exception {
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
         MvcResult mvcResult = mockMvc.perform(get("/teacher/rawlist"))
                 .andExpect(status().isOk())
@@ -36,7 +36,24 @@ public class TeacherControllerIntegrationTest {
         // TODO these test should really first parse the json results
         assertThat(strResult).contains("test-1").contains("green").contains("comment test-1 green");
         assertThat(strResult).contains("test-1").contains("yellow").contains("comment test-1 yellow");
-        assertThat(strResult).contains("test-3").contains("green").contains("comment test-3 green");
+        assertThat(strResult).contains("test-3").contains("green");
+        assertThat(strResult).contains("test-4").contains("green").contains("comment test-4 green");
+    }
+
+    @Test
+    public void testMvc_FilteredVoteList_RemovesEmptyComments() throws Exception {
+
+        mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+        MvcResult mvcResult = mockMvc.perform(get("/teacher/filteredlist"))
+                .andExpect(status().isOk())
+                .andReturn();
+        String  strResult = mvcResult.getResponse().getContentAsString();
+        System.err.println(">>" + strResult);
+
+        // TODO these test should really first parse the json results
+        assertThat(strResult).contains("test-1").contains("green").contains("comment test-1 green");
+        assertThat(strResult).contains("test-1").contains("yellow").contains("comment test-1 yellow");
+        assertThat(strResult).doesNotContain("test-3");
         assertThat(strResult).contains("test-4").contains("green").contains("comment test-4 green");
     }
 }

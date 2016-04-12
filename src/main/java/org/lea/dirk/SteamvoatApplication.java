@@ -17,11 +17,27 @@ public class SteamvoatApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... strings) throws Exception {
+		Add4Votes();
+	}
+
+	// the integration tests depend on this seed data
+	public void Add4Votes() {
 		repository.save(new Vote("test-1", "green", "comment test-1 green"));
 		repository.save(new Vote("test-1", "yellow", "comment test-1 yellow"));
-		repository.save(new Vote("test-3", "green", "comment test-3 green"));
+		repository.save(new Vote("test-3", "green", ""));
 		repository.save(new Vote("test-4", "green", "comment test-4 green"));
 	}
 
-
+	// additional seed data, not included by default
+	// to satisfy integration tests, include this first and Add4Votes last.
+	public void Add600Votes() {
+		// create 600 votes
+		for(int i=1; i<600; i++) {
+			if (i%10 == 0) {
+				String comment = "Comment " + i;
+				repository.save(new Vote("auto", "yellow", comment)); }
+			else {
+				repository.save(new Vote("auto", "green", "")); }
+		}
+	}
 }

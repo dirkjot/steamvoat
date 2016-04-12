@@ -39,26 +39,16 @@ public class TeacherControllerUnitTest {
     }
 
     @Test
-    public void testRawVoteList_ReturnsListOfZero() throws Exception {
+    public void testFilteredVoteList_ReturnsListOfOne() throws Exception {
+        votes.add(new Vote("testbed", "blue", "with comment 1").setTimestamp(new Date(10000L)));
+        Iterable<Vote> iter = new ArrayList<>(votes);
         Page page = new PageImpl<Vote>(votes);
-        when(mockVoteRepository.findAll(any(PageRequest.class))).thenReturn(page);
+        when(mockVoteRepository.findByCommentNot(any(String.class), any(PageRequest.class))).thenReturn(page);
 
         TeacherController subject = new TeacherController(mockVoteRepository);
-        Iterable<Vote> results = subject.rawVoteList();
-        assertThat(results).hasSize(0);
-    }
-
-    @Test
-    public void testRawVoteList_EnsureOrderOfTimestamps() throws Exception {
-        votes.add(new Vote("testbed", "blue", "testing 1").setTimestamp(new Date(10000L)));
-        votes.add(new Vote("testbed", "purple", "testing 2").setTimestamp(new Date(20000L)));
-        Page page = new PageImpl<Vote>(votes);
-        when(mockVoteRepository.findAll(any(PageRequest.class))).thenReturn(page);
-
-        TeacherController subject = new TeacherController(mockVoteRepository);
-        Iterable<Vote> results = subject.rawVoteList();
-        assertThat(results).hasSize(2);
+        Iterable<Vote> results = subject.filteredVoteList();
+        assertThat(results).hasSize(1);
         String firstResponse = results.iterator().next().toString();
-        assertThat(firstResponse).contains("blue").contains("testing 1");
+        assertThat(firstResponse).contains("blue").contains("with comment 1");
     }
 }

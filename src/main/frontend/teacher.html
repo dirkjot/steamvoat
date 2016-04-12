@@ -9,7 +9,15 @@
 </head>
 <body ng-app="teacher" ng-controller="two">
 
-<h1>Teacher view - Raw Votes</h1>
+<h1>Teacher view</h1>
+
+<form name="filter" class="filterform">
+    <label>
+    <input type="checkbox" ng-model="filtered" ng-click="getVotes()">
+        Comment only view
+    </label>
+</form>
+
 <div class="votelist">
     <table>
         <tr>
