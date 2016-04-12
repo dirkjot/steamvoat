@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Profile;
 
+import java.util.List;
+
 @SpringBootApplication
 public class SteamvoatApplication implements CommandLineRunner {
 
@@ -21,12 +23,19 @@ public class SteamvoatApplication implements CommandLineRunner {
 	}
 
 	// the integration tests depend on this seed data
+    // add four votes, removing old copies if these exist (useful for interacting with real db)
 	public void Add4Votes() {
-		repository.save(new Vote("test-1", "green", "comment test-1 green"));
-		repository.save(new Vote("test-1", "yellow", "comment test-1 yellow"));
-		repository.save(new Vote("test-3", "green", ""));
-		repository.save(new Vote("test-4", "green", "comment test-4 green"));
-	}
+        List<Vote> previous = repository.findByUuid("test-1");
+        if (previous.size() > 0) {
+            repository.delete(previous);
+            repository.delete(repository.findByUuid("test-3"));
+            repository.delete(repository.findByUuid("test-4"));
+        }
+        repository.save(new Vote("test-1", "green", "comment test-1 green"));
+        repository.save(new Vote("test-1", "yellow", "comment test-1 yellow"));
+        repository.save(new Vote("test-3", "green", ""));
+        repository.save(new Vote("test-4", "green", "comment test-4 green"));
+    }
 
 	// additional seed data, not included by default
 	// to satisfy integration tests, include this first and Add4Votes last.

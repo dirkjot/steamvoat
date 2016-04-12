@@ -34,6 +34,7 @@ public class TeacherControllerIntegrationTest {
         System.err.println(">>" + strResult);
 
         // TODO these test should really first parse the json results
+        // note that these tests currently suggest that they test more then they do!!!
         assertThat(strResult).contains("test-1").contains("green").contains("comment test-1 green");
         assertThat(strResult).contains("test-1").contains("yellow").contains("comment test-1 yellow");
         assertThat(strResult).contains("test-3").contains("green");
