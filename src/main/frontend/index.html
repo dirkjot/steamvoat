@@ -2,60 +2,76 @@
 <html lang="en">
 <head>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
-    <meta charset="UTF-8">
-    <title>Prof Hald - SteamVoat</title>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SteamVote - Prof Hald</title>
+    <link href='https://fonts.googleapis.com/css?family=Asap:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <link href="sass/steamvoat.css" rel="stylesheet">
 </head>
 
 <body ng-app="voat" ng-controller="one">
 
-<div class="flex-container" ng-class="votecolorclass">
-    <div class="header-group">
-        <div class="header-item">
-            <div class="course-info">
-                <h1>Prof Hald</h1>
-                <h1>PSY101</h1>
-            </div>
-            <div class="logo">
-                StVo
-            </div>
-
+<div class="flex-container" ng-class="votecolorclass" ng-hide="showCommentsEntry">
+    <div class="header-group" ng-hide="votecolorclass">
+        <div class="logo"><img src="images/SteamVote-Logo.svg"></div>
+        <div class="header-comment-icon" ng-click="goToComments()"></div>
+    </div>
+    <div class="course-group" ng-hide="votecolorclass">
+        <div class="labels">
+            <div class="label-left">Professor</div>
+            <div class="label-right">Class</div>
+        </div>
+        <div class="course-info">
+            <div class="label-left">Hald</div>
+            <div class="label-right">PSY101</div>
         </div>
     </div>
     <div class="vote-group" ng-hide="votecolorclass">
         <div class="vote-item">
-            <button class="green-background"
-                    ng-click="clickbutton('green')">&nbsp;</button>
+            <button class="red-background"
+                    ng-click="clickbutton('red')">I'm unsure</button>
         </div>
         <div class="vote-item">
             <button class="yellow-background"
-                    ng-click="clickbutton('yellow')">&nbsp;</button>
+                    ng-click="clickbutton('yellow')">I'm almost there</button>
         </div>
         <div class="vote-item">
-            <button class="red-background"
-                    ng-click="clickbutton('red')">&nbsp;</button>
+            <button class="green-background"
+                    ng-click="clickbutton('green')">I got this</button>
         </div>
     </div>
     <div class="action-group" ng-show="votecolorclass">
-        <button class="action-button" ng-click="votecolorclass='';">Back</button>
-        <button class="action-button" ng-click="scrollToComments()">Comments?</button>
+        <div class="action-button back-icon" ng-click="votecolorclass='';"></div>
+        <div class="action-button comment-icon" ng-click="goToComments()"></div>
     </div>
-
 </div>
 
-<a name="commentgroup">
-    <div class="comment-group">
-        <div class="comment-item">
-            <textarea class="comment-box" cols=40 rows=5 placeholder="Room for comments" ng-model="voteData.comment"></textarea>
-            <div>
-                <button class="submit-feedback"
-                        ng-click="send()">Submit Comments</button>
-                <button ng-show="feedbackMessage" class="feedback-message">  Submitted, thank you!</button>
+<div class="flex-container" ng-show="showCommentsEntry">
+    <div class="header-group">
+        <div class="logo"><img src="images/SteamVote-Logo.svg"></div>
+        <div class="header-comment-icon" ng-click="goToComments()"></div>
+    </div>
+    <div class="comments">
+        <div class="comment-entry" ng-hide="showConfirmation">
+            <div class="comment-group">
+                <h1>Please provide feedback or questions.</h1>
+                <h2>The professor will use your comments to improve this class.</h2>
+                <div class="comment-item">
+                    <textarea class="comment-box" cols=40 rows=5 ng-model="voteData.comment"></textarea>
+                    <div>
+                        <button class="submit-feedback"
+                                ng-click="send()">Submit Comments</button>
+                        <div class="comments-back-icon" ng-click="backToVoting()"></div>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="comment-confirmation" ng-show="showConfirmation">
+            <h1>Thanks for your <br>comments!</h1>
+            <div class="comments-back-icon" ng-click="backToHome()"></div>
+        </div>
     </div>
-</a>
+</div>
+
 
 
 <!-- build:js  steamvoat.min.js -->

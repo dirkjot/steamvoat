@@ -24,9 +24,19 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '
       $scope.send();
     };
 
-    $scope.scrollToComments = function() {
-      $location.hash('commentgroup');
-      $anchorScroll();
+    $scope.goToComments = function() {
+      $scope.showCommentsEntry = true;
+      $scope.showConfirmation = false;
+
+    };
+
+    $scope.backToVoting = function() {
+      $scope.showCommentsEntry = false;
+    };
+
+    $scope.backToHome = function() {
+      $scope.showCommentsEntry = false;
+      $scope.votecolorclass = '';
     };
 
     $scope.send = function () {
@@ -35,6 +45,8 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '
           function success(response) {
             if ($scope.voteData.comment != '') {
               $scope.feedbackMessage = true;
+              $scope.showConfirmation = true;
+              $scope.voteData.comment = '';
               $timeout(function() { $scope.feedbackMessage = false; },
                 3000);
             }},

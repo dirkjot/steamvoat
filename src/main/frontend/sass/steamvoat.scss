@@ -1,18 +1,71 @@
+$font-stack: 'Asap', Verdana, sans-serif;
+$green: #8bc34a;
+$darkGreen: #578b2b;
+$yellow: #ffee58;
+$darkYellow: #f1c428;
+$red: #ef5350;
+$darkRed: #c5332f;
+$darkGrey: #616161;
+$blackish: #333333;
+$steamBlue: #26c6da;
+$warmGrey: #979797;
+$mobileImageWidth: 349px;
+
 @mixin button() {
-  border-radius: 10px;
+  border-radius: 8px;
   border: none;
   outline: none;
-  font-family: 'Open Sans', sans-serif;
+  font-family: $font-stack;
 }
 
-$green: #4caf50;
-$yellow: #ffee58;
-$red: #ef5350;
+@mixin h1() {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 24px;
+}
+
+@mixin h2() {
+  color: $darkGrey;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+h1 {
+  @include h1();
+  margin: 0;
+}
+
+h2 {
+  @include h2();
+  font-weight: 400;
+  margin: 7px 0;
+}
+
 
 html, body {
   height: 100%;
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: $font-stack;
+  @include h2();
+
+  .header-group {
+    padding: 15px 33px;
+    background: $blackish;
+
+    .logo {
+      height: 19px;
+      width: 124px;
+      display: inline-block;
+    }
+
+    .header-comment-icon {
+      background: url("../images/chat-icon-header.svg") no-repeat;
+      width: 20px;
+      height: 21px;
+      float: right;
+      display: inline-block;
+    }
+  }
 
   .flex-container {
     display: flex;
@@ -22,36 +75,59 @@ html, body {
 
     &.green-background {
       background: $green;
+
+      .back-icon {
+        background: url("../images/back-arrow-green.svg") no-repeat;
+      }
+
+      .comment-icon {
+        background: url("../images/comment-icon-green.svg") no-repeat;
+      }
     }
 
     &.yellow-background {
       background:$yellow;
+
+      .back-icon {
+        background: url("../images/back-arrow-yellow.svg") no-repeat;
+      }
+
+      .comment-icon {
+        background: url("../images/comment-icon-yellow.svg") no-repeat;
+      }
     }
 
     &.red-background {
       background: $red;
+      
+      .back-icon {
+        background: url("../images/back-arrow-red.svg") no-repeat;
+      }
+      
+      .comment-icon {
+        background: url("../images/comment-icon-red.svg") no-repeat;
+      }
     }
 
-    .header-group {
-      flex: 0 0 auto;
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: center;
-      padding: 20px 100px;
-      background: #bdbdbd;
+    .course-group {
+      padding: 33px;
+      color: $darkGrey;
 
-      .header-item {
-        margin: 20px 0;
-        flex: 1;
-        position: relative;
+      .label-left {
+        display: inline-block;
+      }
 
-        .course-info {
-          float: left;
-        }
+      .label-right {
+        display: inline-block;
+        float: right;
+      }
 
-        .logo {
-          float: right;
-        }
+      .labels {
+        text-transform: uppercase;
+      }
+
+      .course-info {
+        @include h1();
       }
     }
 
@@ -62,40 +138,45 @@ html, body {
       flex-flow: column nowrap;
       justify-content: space-around;
       align-content: stretch;
-      padding: 100px;
+      padding: 0 33px 33px 33px;
 
       .vote-item {
-        margin: 20px 0;
+        margin: 12.5px 0;
         flex: 1;
         position: relative;
+
+        &:first-of-type {
+          margin-top: 0;
+        }
 
         button {
           @include button();
           position: absolute;
           width:100%;
           height:100%;
-          box-shadow: 0 12px 15px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-          box-shadow: 0 12px 15px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+          font-weight: 700;
+          font-style: italic;
+          font-size: 18px;
 
-          &.green-background {
-            background: $green;
-            color: #fff !important;
+          &.red-background {
+            background: $red;
+            color: $darkRed;
             -webkit-font-smoothing: antialiased;
-            box-shadow: 5px 5px 0 0 rgba(27,94,32,1);
+            box-shadow: 2px 2px 0 0 $darkRed;
           }
 
           &.yellow-background {
             background: $yellow;
-            color: #333 !important;
+            color: $darkYellow;
             -webkit-font-smoothing: antialiased;
-            box-shadow: 5px 5px 0 0 rgba(253,216,53,1);
+            box-shadow: 2px 2px 0 0 $darkYellow;
           }
 
-          &.red-background {
-            background: $red;
-            color: #fff !important;
+          &.green-background {
+            background: $green;
+            color: $darkGreen;
             -webkit-font-smoothing: antialiased;
-            box-shadow: 5px 5px 0 0 rgba(183,28,28,1);
+            box-shadow: 2px 2px 0 0 $darkGreen;
           }
         }
       }
@@ -103,76 +184,100 @@ html, body {
     }
 
     .action-group {
-      width: 100%;
       height: 100px;
       font-weight: 300;
       font-size: 30px;
-      margin: 40px 0;
+      padding: 33px;
       line-height: 120%;
       font-family: 'Open sans', sans-serif;
       font-style: italic;
       color: black;
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-around;
       .action-button {
-        @include button();
-        background: #fff;
-        font-size: 36px;
-        flex: 0 0 auto;
-        width: 35%;
-        position: relative;
+        width: 36px;
+        height: 38px;
+        display: inline-block;
+
+        &.comment-icon {
+          float: right;
+        }
       }
     }
   }
 
-  .comment-group {
-    flex: 0 1 auto;
-    padding: 40px 100px;
-    display: flex;
-    flex-flow: row nowrap;
+  .comments {
 
-    .comment-item {
-      flex: 1 0 auto;
-      justify-content: center;
-      position: relative;
+    .comments-back-icon {
+      background: url("../images/back-arrow.svg") center right no-repeat;
+      width: 40px;
+      height: 40px;
+      display: inline-block;
+    }
 
-      .submit-feedback {
-        @include button();
-        position: relative;
-        background: #4db6ac;
-        color: #fff;
-        width: 200px;
-        height: 50px;
-        font-size: 16px;
-        display: inline-block;
-      }
+    .comment-entry  {
+      .comment-group {
+        padding: 33px;
 
-      .feedback-message {
-        margin-left: 20px;
-        background-color: #ffecb3;
-        font-size: 16px;
-        font-family: 'Open sans', sans-serif;
-        width: 200px;
-        height: 50px;
-        border: 1px solid #ffc400;
-        outline: none;
-        position: relative;
-      }
+        .comment-item {
+          .submit-feedback {
+            @include button();
+            position: relative;
+            background: $steamBlue;
+            color: #fff;
+            width: 160px;
+            height: 40px;
+            font-size: 13px;
+            text-transform: uppercase;
+            display: inline-block;
+            letter-spacing: 0.75px;
+            display: inline-block;
 
-      textarea {
-        border: 1px solid #aaa;
-        outline: none;
-        resize: none;
-        width: 100%;
-        font-size: 16px;
-        padding: 15px;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        box-sizing: border-box;
+          }
+
+          .feedback-message {
+            margin-left: 20px;
+            background-color: #ffecb3;
+            font-size: 16px;
+            font-family: $font-stack;
+            width: 200px;
+            height: 50px;
+            border: 1px solid #ffc400;
+            outline: none;
+            position: relative;
+          }
+
+          textarea {
+            border: 1px solid $warmGrey;
+            outline: none;
+            resize: none;
+            width: 100%;
+            font-size: 14px;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 7px 0 15px 0;
+            height: 145px;
+            box-sizing: border-box;
+            font-family: $font-stack;
+            color: $warmGrey;
+            font-style: italic;
+            line-height: 18px;
+          }
+
+          .comments-back-icon {
+            float: right;
+          }
+        }
       }
     }
+
+    .comment-confirmation {
+      text-align: center;
+
+      h1 {
+        margin: 125px 0 10px 0;
+      }
     }
+  }
+
 
 
   /* ng-cloak */

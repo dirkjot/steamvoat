@@ -97,9 +97,9 @@ gulp.task('html-prod', ['js-prod', 'css-prod'], function() {
 
 // copy images
 gulp.task('images', function() {
-    gulp.src(src + '/img/*')
+    gulp.src(src + '/images/*')
         .pipe(print())
-        .pipe(gulp.dest(destprod + 'img/'));
+        .pipe(gulp.dest(destprod + 'images/'));
 });
 
 // Watch for changes in files
@@ -111,7 +111,7 @@ gulp.task('watch', ['dev'], function() {
     // Watch css files
     gulp.watch(src + '/**/*.scss', ['css-dev']);
     // Watch image files
-    gulp.watch(src + '/img/*', ['images']);
+    gulp.watch(src + '/images/*', ['images']);
 });
 
 
