@@ -39,6 +39,15 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '
       $scope.votecolorclass = '';
     };
 
+    $scope.commentIconState = function() {
+      if ($scope.showConfirmation) {
+        return "header-comment-icon";
+      }
+      else {
+        return "header-comment-icon-selected";
+      }
+    };
+
     $scope.send = function () {
       console.log("sending", $scope.voteData);
       $http.post("/vote", $scope.voteData).then(

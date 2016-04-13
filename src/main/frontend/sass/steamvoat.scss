@@ -65,6 +65,14 @@ html, body {
       float: right;
       display: inline-block;
     }
+
+    .header-comment-icon-selected {
+      background: url("../images/chat-icon-header-selected.svg") no-repeat;
+      width: 20px;
+      height: 21px;
+      float: right;
+      display: inline-block;
+    }
   }
 
   .flex-container {

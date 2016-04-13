@@ -48,7 +48,7 @@
 <div class="flex-container" ng-show="showCommentsEntry">
     <div class="header-group">
         <div class="logo"><img src="images/SteamVote-Logo.svg"></div>
-        <div class="header-comment-icon" ng-click="goToComments()"></div>
+        <div ng-class="commentIconState()" ng-click="goToComments()"></div>
     </div>
     <div class="comments">
         <div class="comment-entry" ng-hide="showConfirmation">
