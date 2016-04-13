@@ -4,7 +4,7 @@ var gulp = require('gulp');
 // Define base folders (with trailing /)
 var src = 'src/main/frontend/';
 var destprod = 'target/classes/static/';
-var destdev = 'target/classes/static/devresources/'
+var destdev = 'target/classes/static/devresources/';
 
 // Include plugins
 var concat = require('gulp-concat');
@@ -13,7 +13,7 @@ var rename = require('gulp-rename');
 var print = require('gulp-print');
 var bowerfiles = require('main-bower-files');
 var addsrc = require('gulp-add-src');
-var processhtml = require('gulp-processhtml')
+var processhtml = require('gulp-processhtml');
 var del = require('del');
 var rev = require('gulp-rev');
 var revreplace = require('gulp-rev-replace');
@@ -26,101 +26,93 @@ gulp.task('showbowerfiles', function() {
 });
 
 // restart with a clean slate
-gulp.task("clean", function() {
+gulp.task("clean", function(done) {
     del(destdev);
     del(destprod);
+    done();
 });
+
+// copy css files for dev targets
+gulp.task('css-copy', function() {
+    gulp.src(src + '**/*.scss')
+        .pipe(print())
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest(destprod));
+});
+
+
+gulp.task('html-copy', function() {
+    gulp.src(src + '**/*.html')
+        .pipe(print())
+        .pipe(gulp.dest(destprod));
+});
+
+// copy images
+gulp.task('images-copy', function() {
+    gulp.src(src + '/images/*', {base: 'images'})
+        .pipe(print())
+        .pipe(gulp.dest(destprod));
+});
+
 
 // copy all js files for dev targets
 gulp.task('js-dev', function() {
     gulp.src(bowerfiles())
         .pipe(addsrc.append(src + '**/*.js'))
         .pipe(print())
-        .pipe(gulp.dest(destdev + 'js/'));
+        .pipe(gulp.dest(destdev));
 });
 
-// minify and package all js files for production targets
+// concat, uglify, rename to min , and copy
 gulp.task('js-prod', function() {
+
     gulp.src(bowerfiles())
-        .pipe(addsrc.append(src + '**/*.js'))
+        .pipe(addsrc.append(src + 'steamvote.js'))
         .pipe(print())
-        .pipe(concat('steamvoat.js'))
-        .pipe(rename({suffix: '.min'}))
+        .pipe(concat('steamvote.min.js'))
         .pipe(uglify())
-        .pipe(rev())
-        .pipe(gulp.dest(destprod))
-        .pipe(rev.manifest())  // only work on the rev manifest from here
         .pipe(gulp.dest(destprod));
-});
 
-// copy css files for dev targets
-gulp.task('css-dev', function() {
-    gulp.src(src + '/**/*.scss')
+    gulp.src(bowerfiles())
+        .pipe(addsrc.append(src + 'teacher/*.js'))
         .pipe(print())
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest(destprod));
+        .pipe(concat('teacher.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(destprod + 'teacher/'));
 });
 
 
-// TODO DPJ does not work , see https://github.com/sindresorhus/gulp-rev/issues/83
-// copy and package all css files for production targets
-gulp.task('css-prod', function() {
-    gulp.src(src + '/**/*.scss')
-        .pipe(print())
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest(destprod))
-});
-
-// copy html files, dev style
-// the build tag in our index.html can have an additional target tag, but
-// that does not seem to work so we need create two tasks.
-gulp.task('html-dev', function() {
-    gulp.src(src + '/**/*.html')
-        .pipe(print())
-        .pipe(gulp.dest(destprod));
-});
-
-// copy html files, prod style
-gulp.task('html-prod', ['js-prod', 'css-prod'], function() {
-    var manifest = gulp.src(destprod + "rev-manifest.json");
-    gulp.src(src + '/**/*.html')
+gulp.task('html-combinejs', function (done) {
+    gulp.src(src + '**/*html')
         .pipe(print())
         .pipe(processhtml())
-        .pipe(revreplace({manifest: manifest}))
-        .pipe(gulp.dest(destprod));
+        .pipe(gulp.dest(destprod))
+        .pipe(print())
+        .on('end', done);
 });
 
-// copy images
-gulp.task('images', function() {
-    gulp.src(src + '/img/*')
-        .pipe(print())
-        .pipe(gulp.dest(destprod + 'img/'));
-});
 
 // Watch for changes in files
 gulp.task('watch', ['dev'], function() {
     // Watch .js files
     gulp.watch(src + '**/*.js', ['js-dev']);
     // Watch html files
-    gulp.watch(src + '/**/*.html', ['html-dev']);
+    gulp.watch(src + '**/*.html', ['html-copy']);
     // Watch css files
-    gulp.watch(src + '/**/*.scss', ['css-dev']);
+    gulp.watch(src + '**/*.scss', ['css-copy']);
     // Watch image files
-    gulp.watch(src + '/img/*', ['images']);
+    gulp.watch(src + 'images/*', ['images-copy']);
 });
 
 
-// Production Task
-// TODO changed production to be identical to dev for now
-gulp.task('production',
-    // ['clean', 'js-prod', 'css-prod', 'images', 'html-prod']);
-    ['js-dev', 'css-dev', 'images', 'html-dev']);
 
-// Default Task
-gulp.task('dev',
-    ['js-dev', 'css-dev', 'images', 'html-dev']);
+
+// Production task
+gulp.task('production', ['html-combinejs', 'css-copy', 'js-prod', 'images-copy' ]);
+
+// Dev Task
+gulp.task('dev', ['js-dev', 'css-copy', 'images-copy', 'html-copy']);
 
 
 // Default Task
-gulp.task('default',
-    ['dev']);
+gulp.task('default', ['dev']);
