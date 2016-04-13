@@ -18,12 +18,10 @@ app.controller("two", ['$scope', '$http', 'moment',
 
             $http.get(endpoint).then(
                 function success (result) {
-                    $scope.votelist = result.data.content
-                },
+                    $scope.votelist = result.data.content  },
                 function failure (result) {
                     alert("Could not retrieve votes");
-                    console.log("Retrieving votes failed: ", result);
-                });
+                    console.log("Retrieving votes failed: ", result);  });
         };
 
         // auto run:
