@@ -2,6 +2,9 @@ app = angular.module("voat", ["uuid4", "ngCookies", "ngAnimate"]);
 
 app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '$anchorScroll', 'uuid4',
   function($scope, $http, $cookies, $timeout, $location, $anchorScroll, uuid4) {
+    $scope.professorName = 'Hald';
+    $scope.className = '---';
+
     $scope.voteData = {comment: "", color: "", uuid: ""};
     $scope.votecolorclass = "";
     $scope.bubbleUp = false;
@@ -24,9 +27,35 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '
       $scope.send();
     };
 
-    $scope.scrollToComments = function() {
-      $location.hash('commentgroup');
-      $anchorScroll();
+    $scope.goToComments = function() {
+      $scope.showCommentsEntry = true;
+      $scope.showConfirmation = false;
+
+    };
+
+    $scope.backToVoting = function() {
+      $scope.showCommentsEntry = false;
+    };
+
+    $scope.backToHome = function() {
+      $scope.showCommentsEntry = false;
+      $scope.votecolorclass = '';
+    };
+
+    $scope.commentIconState = function() {
+      if ($scope.showConfirmation) {
+        return "header-comment-icon";
+      }
+      else {
+        return "header-comment-icon-selected";
+      }
+    };
+
+    $scope.submitFeedbackDimmed = function() {
+      if ($scope.voteData.comment.length > 0) {
+        return {};  }
+      else {
+        return {'opacity':.3 } ; }
     };
 
     $scope.send = function () {
@@ -35,6 +64,8 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '
           function success(response) {
             if ($scope.voteData.comment != '') {
               $scope.feedbackMessage = true;
+              $scope.showConfirmation = true;
+              $scope.voteData.comment = '';  // DPJ
               $timeout(function() { $scope.feedbackMessage = false; },
                 3000);
             }},
@@ -46,5 +77,7 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '
 
     // auto run:
     $scope.determine_user();
+    // $scope.className = $scope.retrieveClassName();
+
   }]);
 

@@ -35,23 +35,23 @@ gulp.task("clean", function(done) {
 // copy css files for dev targets
 gulp.task('css-copy', function() {
     gulp.src(src + '**/*.scss')
-        .pipe(print())
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest(destprod));
+        .pipe(gulp.dest(destprod))
+        .pipe(print());
 });
 
 
 gulp.task('html-copy', function() {
     gulp.src(src + '**/*.html')
-        .pipe(print())
-        .pipe(gulp.dest(destprod));
+        .pipe(gulp.dest(destprod))
+        .pipe(print());
 });
 
 // copy images
 gulp.task('images-copy', function() {
-    gulp.src(src + '/images/*', {base: 'images'})
-        .pipe(print())
-        .pipe(gulp.dest(destprod));
+    gulp.src(src + 'images/*')
+        .pipe(gulp.dest(destprod + 'images/'))
+        .pipe(print());
 });
 
 
@@ -59,8 +59,8 @@ gulp.task('images-copy', function() {
 gulp.task('js-dev', function() {
     gulp.src(bowerfiles())
         .pipe(addsrc.append(src + '**/*.js'))
-        .pipe(print())
-        .pipe(gulp.dest(destdev));
+        .pipe(gulp.dest(destdev))
+        .pipe(print());
 });
 
 // concat, uglify, rename to min , and copy
@@ -68,17 +68,17 @@ gulp.task('js-prod', function() {
 
     gulp.src(bowerfiles())
         .pipe(addsrc.append(src + 'steamvote.js'))
-        .pipe(print())
         .pipe(concat('steamvote.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest(destprod));
+        .pipe(gulp.dest(destprod))
+        .pipe(print());
 
     gulp.src(bowerfiles())
         .pipe(addsrc.append(src + 'teacher/*.js'))
-        .pipe(print())
         .pipe(concat('teacher.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest(destprod + 'teacher/'));
+        .pipe(gulp.dest(destprod + 'teacher/'))
+        .pipe(print());
 });
 
 

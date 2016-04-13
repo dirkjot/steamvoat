@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Watch" type="js.build_tools.gulp" factoryName="Gulp.js">
+  <configuration default="false" name="clean" type="js.build_tools.gulp" factoryName="Gulp.js">
     <node-options />
     <gulpfile>$PROJECT_DIR$/gulpfile.js</gulpfile>
     <tasks>
-      <task>watch</task>
+      <task>clean</task>
     </tasks>
     <arguments />
     <envs />
