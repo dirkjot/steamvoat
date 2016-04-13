@@ -2,6 +2,9 @@ app = angular.module("voat", ["uuid4", "ngCookies", "ngAnimate"]);
 
 app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '$anchorScroll', 'uuid4',
   function($scope, $http, $cookies, $timeout, $location, $anchorScroll, uuid4) {
+    $scope.professorName = 'Hald';
+    $scope.className = '---';
+
     $scope.voteData = {comment: "", color: "", uuid: ""};
     $scope.votecolorclass = "";
     $scope.bubbleUp = false;
@@ -73,8 +76,7 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '
     };
 
     $scope.determine_user();
-
-
+    // $scope.className = $scope.retrieveClassName();
 
   }]);
 
