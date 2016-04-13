@@ -58,7 +58,7 @@
                 <div class="comment-item">
                     <textarea class="comment-box" cols=40 rows=5 ng-model="voteData.comment"></textarea>
                     <div>
-                        <button class="submit-feedback"
+                        <button class="submit-feedback" ng-style="submitFeedbackDimmed()"
                                 ng-click="send()">Submit Comments</button>
                         <div class="comments-back-icon" ng-click="backToVoting()"></div>
                     </div>

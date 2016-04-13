@@ -48,6 +48,13 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '
       }
     };
 
+    $scope.submitFeedbackDimmed = function() { 
+      if ($scope.voteData.comment.length > 0) {
+        return {};  }
+      else {
+        return {'opacity':.3 } ; }
+    };
+
     $scope.send = function () {
       console.log("sending", $scope.voteData);
       $http.post("/vote", $scope.voteData).then(
