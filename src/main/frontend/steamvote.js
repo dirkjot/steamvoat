@@ -1,7 +1,9 @@
 app = angular.module("voat", ["uuid4", "ngCookies", "ngAnimate"]);
 
-app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '$anchorScroll', '$timeout', 'uuid4',
-    function($scope, $http, $cookies, $timeout, $location, $anchorScroll, $timeout, uuid4) {
+app.constant("moment", moment);
+
+app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '$anchorScroll', '$timeout', 'uuid4', 'moment',
+    function($scope, $http, $cookies, $timeout, $location, $anchorScroll, $timeout, uuid4, moment) {
         $scope.professorName = 'Hald';
         $scope.className = '---';
         var TIMEOUT_MINUTES = 5;
@@ -94,9 +96,36 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '
             resetPromise = $timeout($scope.backToHome, TIMEOUT_MINUTES * 60000);
         };
 
+
+        schedule = [[ "Mon", "11:15", "12:45", "PSYCH7"], 
+                    [ "Mon", "12:45", "14:15", "PSYCH7"], 
+                    [ "Mon", "14:15", "15:45", "PSYCH1"], 
+                    [ "Tue", "12:45", "14:15", "PSYCH1"], 
+                    [ "Tue", "14:15", "15:45", "PSYCH1"],
+                    [ "Wed", "11:15", "12:45", "PSYCH7"], 
+                    [ "Wed", "12:45", "14:15", "PSYCH7"], 
+                    [ "Wed", "14:15", "15:45", "PSYCH1"], 
+                    [ "Thu", "12:45", "14:15", "PSYCH1"], 
+                    [ "Thu", "14:15", "15:45", "PSYCH1"] ];
+        
+        $scope.getClassName = function(locatimenow) {
+            dayname = locatimenow.format('ddd');
+            hourminute = locatimenow.format('HH:mm');
+
+            matchingclasses = schedule.filter(function(v) { 
+                return (v[0]==dayname && hourminute >= v[1] && hourminute <=v[2]); });
+            if (matchingclasses.length == 1 && matchingclasses[0].length == 4) {
+                return matchingclasses[0][3]; }
+            return '---';
+        };
+
         // auto run:
         $scope.determine_user();
-        // $scope.className = $scope.retrieveClassName();
+        $scope.className = $scope.getClassName(moment());
         delayReset();
     }]);
+
+
+
+
 
