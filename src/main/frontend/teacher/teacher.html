@@ -24,12 +24,14 @@
             <th>Id</th>
             <th>Comment</th>
             <th>Vote</th>
+            <th>Class</th>
             <th>Time stamp</th>
         </tr>
         <tr ng-repeat="vote in votelist track by vote.id">
             <td>{{vote.id}}</td>
             <td>{{vote.comment}}</td>
             <td>{{vote.color}}</td>
+            <td>{{vote.className}}</td>
             <td>{{formatDate(vote.timestamp)}}</td>
         </tr>
     </table>

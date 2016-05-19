@@ -27,7 +27,7 @@ public class TeacherControllerUnitTest {
 
     @Test
     public void testRawVoteList_ReturnsListOfOne() throws Exception {
-        votes.add(new Vote("testbed", "blue", "testing 123"));
+        votes.add(new Vote("testbed", "blue", "testing 123", "clasT", "profT"));
         Page page = new PageImpl<Vote>(votes);
         when(mockVoteRepository.findAll(any(PageRequest.class))).thenReturn(page);
 
@@ -40,7 +40,7 @@ public class TeacherControllerUnitTest {
 
     @Test
     public void testFilteredVoteList_ReturnsListOfOne() throws Exception {
-        votes.add(new Vote("testbed", "blue", "with comment 1").setTimestamp(new Date(10000L)));
+        votes.add(new Vote("testbed", "blue", "with comment 1", "clasT", "profT").setTimestamp(new Date(10000L)));
         Iterable<Vote> iter = new ArrayList<>(votes);
         Page page = new PageImpl<Vote>(votes);
         when(mockVoteRepository.findByCommentNot(any(String.class), any(PageRequest.class))).thenReturn(page);

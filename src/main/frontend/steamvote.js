@@ -4,8 +4,6 @@ app.constant("moment", moment);
 
 app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '$anchorScroll', '$timeout', 'uuid4', 'moment',
     function($scope, $http, $cookies, $timeout, $location, $anchorScroll, $timeout, uuid4, moment) {
-        $scope.professorName = 'Hald';
-        $scope.className = '---';
         var TIMEOUT_MINUTES = 5;
 
         // there are four states, captured in three variables:
@@ -17,7 +15,7 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '
         $scope.showCommentsEntry = false;
         $scope.showConfirmation = false;
         $scope.votecolorclass = "";
-        $scope.voteData = {comment: "", color: "", uuid: ""};
+        $scope.voteData = {comment: "", color: "", uuid: "", className: "---", professorName: "Hald"};
         var resetPromise = false;
 
         $scope.determine_user = function() {
@@ -106,7 +104,10 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '
                     [ "Wed", "12:45", "14:15", "PSYCH7"], 
                     [ "Wed", "14:15", "15:45", "PSYCH1"], 
                     [ "Thu", "12:45", "14:15", "PSYCH1"], 
-                    [ "Thu", "14:15", "15:45", "PSYCH1"] ];
+                    [ "Thu", "14:15", "15:45", "PSYCH1"]
+
+                      ,[ "Wed", "20:15", "23:45", "NGHT"],
+                     ];
         
         $scope.getClassName = function(locatimenow) {
             dayname = locatimenow.format('ddd');
@@ -121,7 +122,7 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '
 
         // auto run:
         $scope.determine_user();
-        $scope.className = $scope.getClassName(moment());
+        $scope.voteData.className = $scope.getClassName(moment());
         delayReset();
     }]);
 

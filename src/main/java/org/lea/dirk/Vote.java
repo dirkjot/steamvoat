@@ -25,6 +25,8 @@ public class Vote {
     private String color;
     private String comment;
     private Date timestamp;
+    private String professorName;
+    private String className;
 
     public Integer getId() {
         return id;
@@ -71,6 +73,22 @@ public class Vote {
         return this;
     }
 
+    public String getProfessorName() {
+        return professorName;
+    }
+
+    public void setProfessorName(String professorName) {
+        this.professorName = professorName;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
     @PrePersist
     @PreUpdate
     public void updateTimestamp() {
@@ -80,19 +98,24 @@ public class Vote {
     public Vote() {
     }
 
-    public Vote(String uuid, String color, String comment) {
+    public Vote(String uuid, String color, String comment, String className, String professorName) {
         this.uuid = uuid;
         this.color = color;
         this.comment = comment;
+        this.className = className;
+        this.professorName = professorName;
     }
 
     @Override
     public String toString() {
         return "Vote{" +
-                "uuid='" + uuid + '\'' +
+                "id=" + id +
+                ", uuid='" + uuid + '\'' +
                 ", color='" + color + '\'' +
                 ", comment='" + comment + '\'' +
                 ", timestamp=" + timestamp +
+                ", professorName='" + professorName + '\'' +
+                ", className='" + className + '\'' +
                 '}';
     }
 

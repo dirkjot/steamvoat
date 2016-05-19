@@ -31,10 +31,10 @@ public class SteamvoatApplication implements CommandLineRunner {
             repository.delete(repository.findByUuid("test-3"));
             repository.delete(repository.findByUuid("test-4"));
         }
-        repository.save(new Vote("test-1", "green", "comment test-1 green"));
-        repository.save(new Vote("test-1", "yellow", "comment test-1 yellow"));
-        repository.save(new Vote("test-3", "green", ""));
-        repository.save(new Vote("test-4", "green", "comment test-4 green"));
+        repository.save(new Vote("test-1", "green", "comment test-1 green", "clasT", "profT"));
+        repository.save(new Vote("test-1", "yellow", "comment test-1 yellow", "clasT", "profT"));
+        repository.save(new Vote("test-3", "green", "", "clasT", "profT"));
+        repository.save(new Vote("test-4", "green", "comment test-4 green", "clasT", "profT"));
     }
 
 	// additional seed data, not included by default
@@ -44,9 +44,9 @@ public class SteamvoatApplication implements CommandLineRunner {
 		for(int i=1; i<600; i++) {
 			if (i%10 == 0) {
 				String comment = "Comment " + i;
-				repository.save(new Vote("auto", "yellow", comment)); }
+				repository.save(new Vote("auto", "yellow", comment, "clasT", "profT")); }
 			else {
-				repository.save(new Vote("auto", "green", "")); }
+				repository.save(new Vote("auto", "green", "", "clasT", "profT")); }
 		}
 	}
 }
