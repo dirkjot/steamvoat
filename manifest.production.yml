@@ -2,6 +2,6 @@
 applications:
   - name: profhald
     memory: 512M
-    path: target/steamvoat-0.0.1-SNAPSHOT.jar
+    path: target/steamvote-0.0.1-SNAPSHOT.jar
     services:
       - db-dirk

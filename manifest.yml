@@ -2,4 +2,4 @@
 applications:
   - name: steamvoat
     memory: 512M
-    path: target/steamvoat-0.0.1-SNAPSHOT.jar
+    path: target/steamvote-0.0.1-SNAPSHOT.jar

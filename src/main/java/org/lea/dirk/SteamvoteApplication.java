@@ -4,17 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Profile;
 
 import java.util.List;
 
 @SpringBootApplication
-public class SteamvoatApplication implements CommandLineRunner {
+public class SteamvoteApplication implements CommandLineRunner {
 
 	@Autowired VoteRepository repository;
 
 	public static void main(String[] args) {
-		SpringApplication.run(SteamvoatApplication.class, args);
+		SpringApplication.run(SteamvoteApplication.class, args);
 	}
 
 	@Override

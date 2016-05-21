@@ -1,4 +1,4 @@
-app = angular.module("voat", ["uuid4", "ngCookies", "ngAnimate"]);
+app = angular.module("steamvote", ["uuid4", "ngCookies", "ngAnimate"]);
 
 app.constant("moment", moment);
 

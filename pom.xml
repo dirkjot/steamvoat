@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.lea-dirk</groupId>
-    <artifactId>steamvoat</artifactId>
+    <artifactId>steamvote</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>steamvoat</name>
+    <name>steamvote</name>
     <description>Voting app for the classroom, browser based with Spring and AngularJS</description>
 
     <parent>
