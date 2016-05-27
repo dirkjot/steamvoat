@@ -104,9 +104,10 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '
                     [ "Wed", "12:45", "14:15", "PSYCH7"], 
                     [ "Wed", "14:15", "15:45", "PSYCH1"], 
                     [ "Thu", "12:45", "14:15", "PSYCH1"], 
-                    [ "Thu", "14:15", "15:45", "PSYCH1"]
+                    [ "Thu", "14:15", "15:45", "PSYCH1"],
 
-                      ,[ "Wed", "20:15", "23:45", "NGHT"],
+                      [ "Wed", "20:15", "23:45", "NIGHT"],
+                      [ "Thu", "09:15", "12:45", "STAFF"],
                      ];
         
         $scope.getClassName = function(locatimenow) {
