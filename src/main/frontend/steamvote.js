@@ -15,6 +15,7 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '
         $scope.showCommentsEntry = false;
         $scope.showConfirmation = false;
         $scope.votecolorclass = "";
+        $scope.slideout = "";
         $scope.voteData = {comment: "", color: "", uuid: "", className: "---", professorName: "Hald"};
         var resetPromise = false;
 
@@ -29,10 +30,14 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '
         };
 
         $scope.clickbutton = function(color) {
-            //console.log("clickbutton");
-            $scope.voteData.color = color;
-            $scope.votecolorclass = color + "-background";
-            $scope.send();
+            console.log("clickbutton");
+            $scope.slideout = "slideout";
+            $timeout(function() {
+                $scope.voteData.color = color;
+                $scope.votecolorclass = color + "-background";
+                $scope.slideout = "";
+                $scope.send();
+            }, 750);
         };
 
         $scope.goToComments = function() {
@@ -81,6 +86,7 @@ app.controller("one", ['$scope', '$http', '$cookies', '$timeout', '$location', '
             $http.post("/vote", $scope.voteData).then(
                 function success(response) {
                     if ($scope.voteData.comment != '') {
+                        $scope.voteData.comment = '';
                         $scope.showConfirmation = true;     }},
                 function failure(response) {
                     alert("Could not contact the server, sorry");

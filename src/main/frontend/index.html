@@ -22,21 +22,21 @@
         </div>
         <div class="course-info">
             <div class="label-left ng-cloak">{{voteData.professorName}}</div>
-            <div class="label-left">&nbsp;</div>
+            <dciv class="label-left">&nbsp;</dciv>
             <div class="label-right ng-cloak">{{voteData.className}}</div>
         </div>
     </div>
     <div class="vote-group" ng-hide="votecolorclass">
         <div class="vote-item">
-            <button class="red-background"
+            <button class="red-background" ng-class="slideout"
                     ng-click="clickbutton('red')">I'm unsure</button>
         </div>
         <div class="vote-item">
-            <button class="yellow-background"
+            <button class="yellow-background" ng-class="slideout"
                     ng-click="clickbutton('yellow')">I'm almost there</button>
         </div>
         <div class="vote-item">
-            <button class="green-background"
+            <button class="green-background" ng-class="slideout"
                     ng-click="clickbutton('green')">I got this</button>
         </div>
     </div>
@@ -57,7 +57,8 @@
                 <h1>Please provide feedback or questions.</h1>
                 <h2>The professor will use your comments to improve this class.</h2>
                 <div class="comment-item">
-                    <textarea class="comment-box" cols=40 rows=5 ng-model="voteData.comment"></textarea>
+                    <textarea class="comment-box" cols=40 rows=5
+                              ng-model="voteData.comment"></textarea>
                     <div>
                         <button class="submit-feedback" ng-style="submitFeedbackDimmed()"
                                 ng-click="send()">Submit Comments</button>
